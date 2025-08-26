@@ -1,4 +1,4 @@
--- SQL Retail Sales Analysis - P1
+-- SQL Retail Sales Analysis - P1 - (SQL - Retail Sales Analysis_utf .csv)
 --Create table
 DROP TABLE IF EXISTS retail_sales;
 CREATE TABLE retail_sales(
@@ -159,3 +159,4 @@ GROUP BY shift
 
 --End of project
 	
+
