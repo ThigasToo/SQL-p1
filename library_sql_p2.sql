@@ -82,6 +82,8 @@ REFERENCES issued(issued_id)
 --See the data uploaded
 SELECT * FROM issued
 
+--Before the questions, you can create an ERD representation of your database
+
 --Questions: 
 --Task 1. Create a New Book Record -- "978-1-60129-456-2', 'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'Harper Lee', 'J.B. Lippincott & Co.')"
 
@@ -377,5 +379,5 @@ SELECT * FROM issued_status;
 CALL issued_book('IS155', 'C108', '978-0-553-29698-2', 'E104');
 CALL issued_book('IS156', 'C108', '978-0-375-41398-8', 'E104');
 
-
+-- Now you can recreate the ERD and see the new tables that we created 
 	
