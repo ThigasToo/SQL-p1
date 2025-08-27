@@ -1,5 +1,7 @@
 Retail Sales Analysis - SQL Project
+
 📋 Project Overview
+
 This SQL project focuses on analyzing retail sales data to extract valuable business insights. The project includes data cleaning, exploration, and analysis of sales transactions to answer key business questions and identify trends.
 
 🗃️ Database Schema
@@ -106,3 +108,4 @@ Promotional campaign planning
 Staff scheduling based on peak hours
 
 Product category performance analysis
+
