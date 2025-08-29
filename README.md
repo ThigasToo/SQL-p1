@@ -1,134 +1,75 @@
-Retail Sales Analysis - SQL Project
-
-📋 Project Overview
-
-This SQL project focuses on analyzing retail sales data to extract valuable business insights. The project includes data cleaning, exploration, and analysis of sales transactions to answer key business questions and identify trends.
-
-🗃️ Database Schema
-
-Table Name: retail_sales
-
-Column - Type -	Description
-
-- transactions_id	- INT -	Primary key, unique transaction identifier
-
-- sale_date	- DATE	- Date of the sale
-
-- sale_time	- TIME -	Time of the sale
-
-- customer_id	- INT -	Unique customer identifier
-
-- gender -	VARCHAR(15) -	Customer gender
-
-- age -	INT -	Customer age
-
-- category	- VARCHAR(15) -	Product category
-
-- quantiy -	INT -	Quantity purchased
-
-- price_per_unit -	FLOAT -	Price per unit
-
-- cogs - FLOAT -	Cost of goods sold
-
-- total_sale -	FLOAT -	Total sale amount
-
-🧹 Data Cleaning Process
-
-The project includes comprehensive data cleaning:
-
-Removal of records with NULL values in critical columns (age, gender, category, quantity, cogs, total_sale)
-
-Verification of data completeness after cleaning
-
-Initial data exploration to understand dataset characteristics
-
-🔍 Key Analysis Performed
-
-1. Basic Metrics
-
-- Total number of sales transactions
-
-- Count of unique customers
-
-- Product categories available
-
-2. Business Questions Answered
-
-- Sales on specific dates (e.g., 2022-11-05)
-
-- High-quantity clothing sales in November 2022
-
-- Total sales by category
-
-- Average age of Beauty category customers
-
-- High-value transactions (>1000)
-
-- Transaction patterns by gender and category
-
-- Monthly sales performance and best-selling months
-
-- Top 5 customers by total spending
-
-- Unique customer count per category
-
-- Order distribution across daily shifts (Morning, Afternoon, Evening)
-
-🛠️ SQL Features Used
-
-Data Definition: CREATE TABLE, DROP TABLE
-
-Data Manipulation: SELECT, WHERE, GROUP BY, ORDER BY
-
-Aggregate Functions: COUNT, SUM, AVG, ROUND
-
-Window Functions: RANK() OVER()
-
-Date/Time Functions: EXTRACT(), TO_CHAR()
-
-CTEs: WITH clauses for complex queries
-
-Conditional Logic: CASE statements
-
-Data Cleaning: NULL handling and data validation
-
-📊 Insights Generated
-
--Sales performance across different product categories
-
--Customer demographic analysis
-
--Temporal patterns in purchasing behavior
-
--Identification of high-value customers
-
--Seasonal/monthly sales trends
-
--Shift-based order distribution analysis
-
-🚀 How to Use
-
-Execute the SQL script to create the retail_sales table
-
-Load your retail sales data into the table
-
-Run the individual query blocks to generate specific insights
-
-Modify queries as needed for your specific analysis requirements
-
-📈 Potential Business Applications
-
-- Inventory management optimization
-
-- Customer segmentation and targeting
-
-- Sales strategy development
-
-- Promotional campaign planning
-
-- Staff scheduling based on peak hours
-
-- Product category performance analysis
+# SQL Retail Sales Analysis - P1
+
+## 📌 Descrição
+Este projeto contém consultas SQL para análise de vendas no varejo.  
+O objetivo é explorar, limpar e analisar os dados da tabela `retail_sales`, respondendo a perguntas de negócio relevantes.
+
+## 🛠️ Estrutura do Arquivo
+O arquivo principal é **`sql_query_p1.sql`**, que contém:
+1. **Criação da tabela** `retail_sales`.
+2. **Limpeza dos dados** (remoção de registros nulos).
+3. **Exploração inicial** (contagem de vendas, clientes e categorias).
+4. **Consultas de análise de negócio**, como:
+   - Vendas em datas específicas.
+   - Transações filtradas por categoria e quantidade.
+   - Total de vendas por categoria.
+   - Idade média de clientes em determinadas categorias.
+   - Identificação de grandes vendas (acima de 1000).
+   - Transações por gênero e categoria.
+   - Mês com melhor desempenho em vendas.
+   - Top 5 clientes por volume de vendas.
+   - Clientes únicos por categoria.
+   - Volume de vendas por turno (manhã, tarde, noite).
+
+## 📊 Exemplos de Consultas
+- **Total de vendas por categoria**:
+  ```sql
+  SELECT 
+      category,
+      SUM(total_sale) AS net_sale,
+      COUNT(*) AS total_orders
+  FROM retail_sales
+  GROUP BY 1;
+
+- **Top 5 clientes com maior volume de vendas**:
+```sql
+  SELECT 
+    customer_id,
+    SUM(total_sale) AS total_sales
+  FROM retail_sales
+  GROUP BY 1
+  ORDER BY 2 DESC
+  LIMIT 5;
+```
+- **Turnos de vendas (manhã, tarde, noite)**:
+  ```sql
+  WITH hourly_sale AS (
+    SELECT *,
+        CASE
+            WHEN EXTRACT(HOUR FROM sale_time) < 12 THEN 'Morning'
+            WHEN EXTRACT(HOUR FROM sale_time) BETWEEN 12 AND 17 THEN 'Afternoon'
+            ELSE 'Evening'
+        END AS shift
+    FROM retail_sales
+  )
+  SELECT 
+    shift,
+    COUNT(*) AS total_orders
+  FROM hourly_sale
+  GROUP BY shift;
+  ```
+
+## 🚀 Como usar:
+1. Execute o script sql_query_p1.sql em seu banco de dados (PostgreSQL ou compatível).
+2. Certifique-se de ter criado a tabela retail_sales com os dados adequados.
+3. Rode as consultas para explorar os insights de vendas.
+
+## 📈 Insights Possíveis:
+- Identificação de categorias mais lucrativas.
+- Perfil médio dos clientes por categoria.
+- Distribuição das vendas ao longo do dia.
+- Melhores meses de vendas por ano.
+- Clientes mais valiosos para o negócio.
 
 
 
